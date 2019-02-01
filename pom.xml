@@ -24,7 +24,7 @@
 
     <groupId>uk.co.caprica</groupId>
     <artifactId>native-streams</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
 
     <name>native streams</name>
     <description>Enables the redirection of native process in/out/err streams to any file.</description>
