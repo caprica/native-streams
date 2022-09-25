@@ -7,7 +7,7 @@
         <dependency>
             <groupId>uk.co.caprica</groupId>
             <artifactId>native-streams</artifactId>
-            <version>2.0.0</version>
+            <version>3.0.0</version>
         </dependency>
     </dependencies> 
 -->
@@ -18,7 +18,7 @@
 
     <groupId>uk.co.caprica</groupId>
     <artifactId>native-streams</artifactId>
-    <version>2.0.1-SNAPSHOT</version>
+    <version>3.0.0-SNAPSHOT</version>
 
     <name>native streams</name>
     <description>Enables the redirection of native process in/out/err streams to any file.</description>
@@ -77,9 +77,11 @@
     </distributionManagement>
 
     <properties>
-        <java.version>1.8</java.version>
-        <module.name>uk.co.caprica.vlcj.info</module.name>
-        <jna.version>5.5.0</jna.version>
+        <java.version>11</java.version>
+        <jna.version>5.12.1</jna.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
@@ -91,39 +93,11 @@
     </dependencies>
 
     <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.eclipse.m2e</groupId>
-                    <artifactId>lifecycle-mapping</artifactId>
-                    <version>1.0.0</version>
-                    <configuration>
-                        <lifecycleMappingMetadata>
-                            <pluginExecutions>
-                                <pluginExecution>
-                                    <pluginExecutionFilter>
-                                        <groupId>org.apache.maven.plugins</groupId>
-                                        <artifactId>maven-enforcer-plugin</artifactId>
-                                        <versionRange>[1.0.0,)</versionRange>
-                                        <goals>
-                                            <goal>enforce</goal>
-                                        </goals>
-                                    </pluginExecutionFilter>
-                                    <action>
-                                        <ignore />
-                                    </action>
-                                </pluginExecution>
-                            </pluginExecutions>
-                        </lifecycleMappingMetadata>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
-                <version>3.1.0</version>
+                <version>3.3.0</version>
                 <configuration>
                     <encoding>UTF-8</encoding>
                 </configuration>
@@ -131,22 +105,14 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-                <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                    <encoding>UTF-8</encoding>
-                </configuration>
+                <version>3.10.1</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>3.2.0</version>
+                <version>3.3.0</version>
                 <configuration>
                     <archive>
-                        <manifestEntries>
-                            <Automatic-Module-Name>${module.name}</Automatic-Module-Name>
-                        </manifestEntries>
                         <manifest>
                             <addClasspath>true</addClasspath>
                         </manifest>
@@ -169,19 +135,20 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.2.0</version>
+                <version>3.4.1</version>
                 <configuration>
                     <author>true</author>
                     <charset>UTF-8</charset>
                     <doctitle>${project.name} ${project.version} API Documentation</doctitle>
                     <docfilessubdirs>true</docfilessubdirs>
                     <encoding>UTF-8</encoding>
-                    <footer>(C)2020 Caprica Software Limited</footer>
+                    <bottom>(C)2022 Caprica Software Limited</bottom>
                     <show>public</show>
                     <quiet>true</quiet>
                     <failOnError>true</failOnError>
                     <additionalOptions>-html5</additionalOptions>
                     <source>${java.version}</source>
+                    <sourcepath>src/main/resources</sourcepath>
                     <excludePackageNames>uk.co.caprica.nativestreams.binding</excludePackageNames>
                 </configuration>
                 <executions>
@@ -196,7 +163,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
-                <version>1.6</version>
+                <version>3.0.1</version>
                 <executions>
                     <execution>
                         <id>sign-artifacts</id>
@@ -210,7 +177,7 @@
             <plugin>
                 <groupId>org.sonatype.plugins</groupId>
                 <artifactId>nexus-staging-maven-plugin</artifactId>
-                <version>1.6.8</version>
+                <version>1.6.13</version>
                 <extensions>true</extensions>
                 <configuration>
                     <serverId>ossrh</serverId>
